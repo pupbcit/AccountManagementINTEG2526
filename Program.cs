@@ -9,7 +9,7 @@ namespace AccountManagement
             Console.WriteLine("ACCOUNT MANAGEMENT SYSYEM");
 
             string username = "superuser";
-            string password = "superuser123!";
+            string password = "superuser123!!";
 
             Console.Write("Enter username: ");
             string usernameInput = Console.ReadLine();
