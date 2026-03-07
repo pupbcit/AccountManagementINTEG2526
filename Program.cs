@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AccountManagementAppService;
+using AccountManagementModels;
 
 namespace AccountManagement
 {
@@ -11,18 +13,30 @@ namespace AccountManagement
 
         static void Main(string[] args)
         {
-            Console.WriteLine("ACCOUNT MANAGEMENT SYSYEM");
 
-            PopulateDefaultAccounts();
+            Console.Write("Enter username: ");
+            string username = Console.ReadLine();
+            Console.Write("Enter password: ");
+            string password = Console.ReadLine();
 
-            bool isLogin = ShowLoginOption();
+            AccountAppService appService = new AccountAppService();
 
-            while (isLogin)
-            {
-                Login();
+            Account newAccount = new Account { Username = username, Password = password };
 
-                isLogin = ShowLoginOption();
-            }
+            appService.Register(newAccount);
+
+            //Console.WriteLine("ACCOUNT MANAGEMENT SYSYEM");
+
+            //PopulateDefaultAccounts();
+
+            //bool isLogin = ShowLoginOption();
+
+            //while (isLogin)
+            //{
+            //    Login();
+
+            //    isLogin = ShowLoginOption();
+            //}
         }
 
         static void PopulateDefaultAccounts()
@@ -155,7 +169,7 @@ namespace AccountManagement
             }
         }
 
-        private static void UpdateUser()
+        static void UpdateUser()
         {
             Console.WriteLine("UPDATE USER: ");
             Console.Write("Enter the username of the user you want to update: ");
@@ -185,7 +199,7 @@ namespace AccountManagement
             AdminMenu();
         }
 
-        private static bool ValidateUserName(string username)
+        static bool ValidateUserName(string username)
         {
             bool valid = true;
             foreach(var un in usernames)
@@ -198,7 +212,7 @@ namespace AccountManagement
             return valid;
         }
 
-        private static void AddUser()
+        static void AddUser()
         {
             Console.WriteLine("ADDING USER: Enter the necessary information");
             Console.Write("username: ");
@@ -211,7 +225,7 @@ namespace AccountManagement
             AdminMenu();
         }
 
-        private static void ViewUsers()
+        static void ViewUsers()
         {
             Console.WriteLine("\nHere are the list of users.. ");
             
@@ -222,7 +236,6 @@ namespace AccountManagement
 
             AdminMenu();
         }
-
 
         static void ShowOptions(string[] options)
         {

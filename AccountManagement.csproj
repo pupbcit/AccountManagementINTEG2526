@@ -7,4 +7,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="AccountManagementAppService\**" />
+    <Compile Remove="AccountManagementDataService\**" />
+    <Compile Remove="AccountManagementModels\**" />
+    <EmbeddedResource Remove="AccountManagementAppService\**" />
+    <EmbeddedResource Remove="AccountManagementDataService\**" />
+    <EmbeddedResource Remove="AccountManagementModels\**" />
+    <None Remove="AccountManagementAppService\**" />
+    <None Remove="AccountManagementDataService\**" />
+    <None Remove="AccountManagementModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="AccountManagementAppService\AccountManagementAppService.csproj" />
+    <ProjectReference Include="AccountManagementModels\AccountManagementModels.csproj" />
+  </ItemGroup>
+
 </Project>
