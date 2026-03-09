@@ -8,7 +8,7 @@ namespace AccountManagementModels
 {
     public class Account
     {
-        ///data lang...
+        public Guid AccountId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }

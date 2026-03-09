@@ -11,42 +11,20 @@ namespace AccountManagement
         static List<string> usernames = new List<string>();
         static List<string> passwords = new List<string>();
 
+        static AccountAppService accountAppService = new AccountAppService(); 
+
         static void Main(string[] args)
         {
+            Console.WriteLine("ACCOUNT MANAGEMENT SYSYEM");
 
-            Console.Write("Enter username: ");
-            string username = Console.ReadLine();
-            Console.Write("Enter password: ");
-            string password = Console.ReadLine();
+            bool isLogin = ShowLoginOption();
 
-            AccountAppService appService = new AccountAppService();
+            while (isLogin)
+            {
+                Login();
 
-            Account newAccount = new Account { Username = username, Password = password };
-
-            appService.Register(newAccount);
-
-            //Console.WriteLine("ACCOUNT MANAGEMENT SYSYEM");
-
-            //PopulateDefaultAccounts();
-
-            //bool isLogin = ShowLoginOption();
-
-            //while (isLogin)
-            //{
-            //    Login();
-
-            //    isLogin = ShowLoginOption();
-            //}
-        }
-
-        static void PopulateDefaultAccounts()
-        {
-            usernames.Add("admin");
-            usernames.Add("user");
-            usernames.Add("guest");
-            passwords.Add("admin123!");
-            passwords.Add("user123!");
-            passwords.Add("guest123!");
+                isLogin = ShowLoginOption();
+            }
         }
 
         static bool ShowLoginOption()
@@ -88,20 +66,8 @@ namespace AccountManagement
                 string usernameInput = Console.ReadLine();
                 Console.Write("Enter password: ");
                 string passwordInput = Console.ReadLine();
-                bool isMatched = false;
 
-                for (int x = 0; x < passwords.Count; x++)
-                {
-                    if (usernameInput == usernames[x] && passwordInput == passwords[x])
-                    {
-                        isMatched = true;
-                        break;
-                    }
-                    else
-                    {
-                        isMatched = false;
-                    }
-                }
+                bool isMatched = accountAppService.Authenticate(usernameInput, passwordInput);
 
                 AddAccessLogs(usernameInput, passwordInput, isMatched);
                 
@@ -219,19 +185,25 @@ namespace AccountManagement
             string username = Console.ReadLine();
             Console.Write("password: ");
             string password = Console.ReadLine();
-            usernames.Add(username);
-            passwords.Add(password);
-            Console.WriteLine($"Successfully added user {username}");
+
+            Account newAccount = new Account { AccountId = Guid.NewGuid(), Username = username, Password = password};
+
+            accountAppService.Register(newAccount);
+
+            Console.WriteLine($"Successfully added user {newAccount.AccountId}");
             AdminMenu();
         }
 
         static void ViewUsers()
         {
             Console.WriteLine("\nHere are the list of users.. ");
-            
-            for (int i = 0; i < usernames.Count; i++)
+
+            var accounts = accountAppService.GetAccounts();
+
+            foreach (var account in accounts)
             {
-                Console.WriteLine($"[{i+1}] username: {usernames[i]}, password: {passwords[i]}");
+                Console.WriteLine($"ID: {account.AccountId} username: {account.Username}, password: {account.Password}");
+
             }
 
             AdminMenu();

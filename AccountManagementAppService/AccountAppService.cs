@@ -10,15 +10,56 @@ namespace AccountManagementAppService
 {
     public class AccountAppService
     {
-        //behavior lang...
-        public void Register(Account account)
-        {
-            AccountDataService accountDataService = new AccountDataService();
+        AccountDataService accountDataService = new AccountDataService();
 
-            if (!accountDataService.IsUsernameExists(account.Username))
+        public bool Register(Account newAccount)
+        {
+            if (accountDataService.UsernameExists(newAccount.Username))
+                return false;
+
+            var account = new Account
             {
-                accountDataService.AddAccount(account);
-            }
+                Username = newAccount.Username,
+                Password = newAccount.Password
+            };
+
+            accountDataService.Add(account);
+            return true;
+        }
+
+        public bool ChangePassword(Guid accountID, string newPassword)
+        {
+            var account = accountDataService.GetById(accountID);
+
+            if (account == null)
+                return false;
+
+            account.Password = newPassword;
+
+            accountDataService.Update(account);
+
+            return false;
+        }
+
+        public bool Authenticate(string username, string password)
+        {
+            var account = accountDataService.GetByUsername(username);
+
+            if (account == null)
+                return false;
+
+            return account.Password == password;
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return accountDataService.GetAccounts();
+
+        }
+
+        public Account? GetAccount(Guid accountId)
+        {
+            return accountDataService.GetById(accountId);
         }
     }
 }

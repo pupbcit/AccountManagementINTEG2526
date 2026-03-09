@@ -13,27 +13,50 @@ namespace AccountManagementDataService
 
         public AccountDataService()
         {
-            Account adminAccount = new Account { Username = "Admin", Password = "Admin123!" };
+            Account adminAccount = new Account { AccountId = Guid.NewGuid(), Username = "admin", Password = "admin123!" };
 
-            Account userAccount = new Account { Username = "user", Password = "Password123!" };
+            Account userAccount = new Account { AccountId = Guid.NewGuid(), Username = "user", Password = "user123!" };
 
-            Account guestAccount = new Account { Username = "guest", Password = "Guest123!" };
+            Account guestAccount = new Account { AccountId = Guid.NewGuid(), Username = "guest", Password = "guest123!" };
 
             dummyAccounts.Add(adminAccount);
             dummyAccounts.Add(userAccount);
             dummyAccounts.Add(guestAccount);
         }
 
-        public bool IsUsernameExists(string username)
-        {
-            var result = dummyAccounts.Where(x => x.Username == username);
-
-            return result.Any();
-        }
-
-        public void AddAccount(Account account)
+        public void Add(Account account)
         {
             dummyAccounts.Add(account);
+        }
+
+        public Account? GetById(Guid id)
+        {
+            return dummyAccounts.FirstOrDefault(a => a.AccountId == id);
+        }
+
+        public Account? GetByUsername(string username)
+        {
+            return dummyAccounts.FirstOrDefault(a => a.Username == username);
+        }
+
+        public bool UsernameExists(string username)
+        {
+            return dummyAccounts.Any(a => a.Username == username);
+        }
+
+        public void Update(Account account)
+        {
+            var existing = GetById(account.AccountId);
+            if (existing != null)
+            {
+                existing.Username = account.Username;
+                existing.Password = account.Password;
+            }
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return dummyAccounts;
         }
     }
 }
