@@ -17,13 +17,7 @@ namespace AccountManagementAppService
             if (accountDataService.UsernameExists(newAccount.Username))
                 return false;
 
-            var account = new Account
-            {
-                Username = newAccount.Username,
-                Password = newAccount.Password
-            };
-
-            accountDataService.Add(account);
+            accountDataService.Add(newAccount);
             return true;
         }
 
