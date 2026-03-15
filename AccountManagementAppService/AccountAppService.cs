@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AccountManagementModels;
+﻿using AccountManagementModels;
 using AccountManagementDataService;
 
 namespace AccountManagementAppService
 {
     public class AccountAppService
     {
-        AccountDataService accountDataService = new AccountDataService();
+        AccountDataService accountDataService = new AccountDataService(new AccountDBData());
 
         public bool Register(Account newAccount)
         {

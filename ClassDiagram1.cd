@@ -1,23 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AccountManagement.Program">
-    <Position X="2.5" Y="2" Width="1.5" />
+    <Position X="1.75" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ACAAACAgAAAABAAAAQAABAEAAQAAAQAgAAAYBgAIAAA=</HashCode>
+      <HashCode>ACAAACAgAAAABAABAQAAAAEAAQAAAQAgAAAYBgAIAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AccountManagementAppService.AccountAppService">
-    <Position X="4.5" Y="2.25" Width="2.5" />
+    <Position X="5.75" Y="3.25" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="AccountManagementDataService.AccountDataService">
-    <Position X="5" Y="4.5" Width="2.75" />
+    <Position X="9.5" Y="3" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="AccountManagementModels.Account">
-    <Position X="7.75" Y="2.25" Width="1.5" />
+    <Position X="5.75" Y="7.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Font Name="Segoe UI" Size="10" />
+  <Class Name="AccountManagementDataService.AccountInMemoryData">
+    <Position X="13.25" Y="4.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AccountManagementDataService.AccountJsonData">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

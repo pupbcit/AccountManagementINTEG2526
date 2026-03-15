@@ -9,54 +9,41 @@ namespace AccountManagementDataService
 {
     public class AccountDataService
     {
-        public List<Account> dummyAccounts = new List<Account>();
-
-        public AccountDataService()
+        IAccountDataService _dataService;
+        public AccountDataService(IAccountDataService accountDataService)
         {
-            Account adminAccount = new Account { AccountId = Guid.NewGuid(), Username = "admin", Password = "admin123!" };
-
-            Account userAccount = new Account { AccountId = Guid.NewGuid(), Username = "user", Password = "user123!" };
-
-            Account guestAccount = new Account { AccountId = Guid.NewGuid(), Username = "guest", Password = "guest123!" };
-
-            dummyAccounts.Add(adminAccount);
-            dummyAccounts.Add(userAccount);
-            dummyAccounts.Add(guestAccount);
+            _dataService = accountDataService;
         }
 
         public void Add(Account account)
         {
-            dummyAccounts.Add(account);
+            _dataService.Add(account);
         }
 
         public Account? GetById(Guid id)
         {
-            return dummyAccounts.FirstOrDefault(a => a.AccountId == id);
+            return _dataService.GetById(id);
         }
 
         public Account? GetByUsername(string username)
         {
-            return dummyAccounts.FirstOrDefault(a => a.Username == username);
+            return _dataService.GetByUsername(username);
         }
 
         public bool UsernameExists(string username)
         {
-            return dummyAccounts.Any(a => a.Username == username);
+            return _dataService.UsernameExists(username);
         }
 
         public void Update(Account account)
         {
-            var existing = GetById(account.AccountId);
-            if (existing != null)
-            {
-                existing.Username = account.Username;
-                existing.Password = account.Password;
-            }
+            _dataService.Update(account);
         }
 
         public List<Account> GetAccounts()
         {
-            return dummyAccounts;
+            return _dataService.GetAccounts();
         }
+
     }
 }
