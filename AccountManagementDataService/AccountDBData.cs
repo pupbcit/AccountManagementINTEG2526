@@ -13,7 +13,7 @@ namespace AccountManagementDataService
 
         //connectionString
         private string connectionString
-        = "Data Source =1IDEAPAD5PRO\\SQLEXPRESS; Initial Catalog = AccountMgmtINTEG; Integrated Security = True; TrustServerCertificate=True;";
+        = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = AccountMgmtINTEG; Integrated Security = True; TrustServerCertificate=True;";
 
         private SqlConnection sqlConnection;
         public AccountDBData()
