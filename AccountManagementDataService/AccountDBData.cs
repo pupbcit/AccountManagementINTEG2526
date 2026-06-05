@@ -140,6 +140,21 @@ namespace AccountManagementDataService
             sqlConnection.Close();
         }
 
+        public void Delete(Guid accountId)
+        {
+            sqlConnection.Open();
+
+            var deleteStatement = "DELETE FROM Accounts WHERE AccountId = @AccountId";
+
+            SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection);
+
+            deleteCommand.Parameters.AddWithValue("@AccountId", accountId.ToString());
+
+            deleteCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
         public bool UsernameExists(string username)
         {
             var selectStatement = "SELECT AccountId, Username, Password FROM Accounts WHERE Username = @Username";

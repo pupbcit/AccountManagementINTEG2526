@@ -50,5 +50,15 @@ namespace AccountManagementAppService
         {
             return accountDataService.GetById(accountId);
         }
+
+        public void UpdateUser(Account account)
+        {
+            accountDataService.Update(account);
+        }
+
+        public void RemoveUser(Guid accountId)
+        {
+            accountDataService.Delete(accountId);
+        }
     }
 }

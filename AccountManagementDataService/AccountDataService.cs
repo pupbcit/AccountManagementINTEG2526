@@ -45,5 +45,10 @@ namespace AccountManagementDataService
             return _dataService.GetAccounts();
         }
 
+        public void Delete(Guid id)
+        {
+             _dataService.Delete(id);
+        }
+
     }
 }

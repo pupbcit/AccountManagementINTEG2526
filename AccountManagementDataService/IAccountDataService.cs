@@ -15,5 +15,6 @@ namespace AccountManagementDataService
         bool UsernameExists(string username);
         void Update(Account account);
         List<Account> GetAccounts();
+        void Delete(Guid id);
     }
 }

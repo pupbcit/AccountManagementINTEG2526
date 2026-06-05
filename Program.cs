@@ -124,7 +124,7 @@ namespace AccountManagement
                     UpdateUser();
                     break;
                 case "4":
-                    //DeleteUser();
+                    DeleteUser();
                     break;
                 case "5":
                     DisplayLogs();
@@ -133,6 +133,16 @@ namespace AccountManagement
                     Console.WriteLine("Invalid.");
                     break;
             }
+        }
+
+        static void DeleteUser()
+        {
+            Console.WriteLine("DELETE USER: ");
+            Console.Write("Enter the ID of the user you want to delete: ");
+            string findUser = Console.ReadLine();
+            accountAppService.RemoveUser(Guid.Parse(findUser));
+            Console.WriteLine("successfully deleted");
+            AdminMenu();
         }
 
         static void UpdateUser()

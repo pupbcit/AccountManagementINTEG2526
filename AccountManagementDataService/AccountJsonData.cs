@@ -98,6 +98,9 @@ namespace AccountManagementDataService
             return accounts.Where(x => x.Username == username).Any();
         }
 
-
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

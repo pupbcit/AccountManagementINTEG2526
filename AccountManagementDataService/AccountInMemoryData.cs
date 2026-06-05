@@ -58,5 +58,10 @@ namespace AccountManagementDataService
         {
             return dummyAccounts;
         }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
